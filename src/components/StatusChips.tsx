@@ -1,3 +1,4 @@
+// src/components/StatusChips.tsx
 import { useConnectionStatus } from '../hooks/useConnectionStatus'
 
 export default function StatusChips() {
@@ -34,3 +35,4 @@ export default function StatusChips() {
     </div>
   )
 }
+
