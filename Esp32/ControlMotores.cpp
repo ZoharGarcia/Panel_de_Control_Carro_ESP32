@@ -93,11 +93,9 @@ void driveFromXY(float x, float y, float maxPct) {
   setMotorPair(left, right, cap);
 }
 
-// =====================
-// HTTP Handlers
-// =====================
+// HTTP 
+
 void handleStatus() {
-  // CORS
   server.sendHeader("Access-Control-Allow-Origin", "*");
   server.send(200, "text/plain", "alive");
 }
@@ -161,9 +159,9 @@ void onWsEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length){
       return;
     }
     if (hasType(msg, "cmd")) {
-      float x   = parseFloatField(msg, "x",   0.0f);  // -1..1
-      float y   = parseFloatField(msg, "y",   0.0f);  // -1..1
-      float max = parseFloatField(msg, "max", 50.0f); // 0..100
+      float x   = parseFloatField(msg, "x",   0.0f);  
+      float y   = parseFloatField(msg, "y",   0.0f);  
+      float max = parseFloatField(msg, "max", 50.0f); 
       // Si estaba en E-STOP y llegan comandos, ignora hasta rearmar
       if (!estopActive) {
         driveFromXY(x, y, max);
