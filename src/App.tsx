@@ -8,8 +8,7 @@ export default function App() {
   const [maxSpeed, setMaxSpeed] = useState(50)
   const xRef = useRef(0)
   const yRef = useRef(0)
-
-  // Solo actualiza valores en pantalla (sin WS)
+  
   const onJoy = (norm:{x:number;y:number}) => {
     xRef.current = norm.x
     yRef.current = norm.y
