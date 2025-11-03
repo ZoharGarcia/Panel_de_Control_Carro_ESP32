@@ -1,4 +1,4 @@
-# ESP32 Car Control UI (React + Vite + Tailwind)
+# ESP32 - Control UI (React + Vite + Tailwind)
 
 Panel de control en **dark UI** con joystick, E‑Stop fijo, slider de **Velocidad máx.**, y chips de estado (Conectado/RSSI/Latencia/Batería). Listo para conectar por **WebSocket** a ESP32.
 
