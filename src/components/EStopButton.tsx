@@ -1,14 +1,20 @@
 import { useRef, useState } from 'react'
 
-export default function EStopButton() {
+export default function EStopButton({
+  onStop,
+  onRearm
+}: {
+  onStop?: () => void
+  onRearm?: () => void
+}) {
   const [armed, setArmed] = useState(true)
   const holdRef = useRef<number | null>(null)
 
-  const onPointerDown = () => {
+  const triggerStop = () => {
     if (!armed) return
-    // Trigger immediate stop (emit multiple packets in real impl)
     console.log('E-STOP: STOP sent')
     setArmed(false)
+    onStop?.()
   }
 
   const onHoldToArm = () => {
@@ -21,6 +27,7 @@ export default function EStopButton() {
         holdRef.current = null
         setArmed(true)
         console.log('E-STOP: RE-ARMED')
+        onRearm?.()
       }
     }, 50)
   }
@@ -36,12 +43,12 @@ export default function EStopButton() {
     <div className="fixed top-4 right-4 z-50">
       {armed ? (
         <button
-          onPointerDown={onPointerDown}
+          onPointerDown={triggerStop}
           className="btn-danger shadow-glow"
           aria-label="Paro de emergencia"
           title="Paro inmediato — Mantén 2 s para rearmar"
         >
-          E‑STOP
+          E-STOP
         </button>
       ) : (
         <button
@@ -51,7 +58,7 @@ export default function EStopButton() {
           className="btn-ghost border-danger text-danger"
           title="Mantén 2 s para rearmar"
         >
-          Re‑armar
+          Re-armar
         </button>
       )}
     </div>
