@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel - Carro ESP32</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title"><strong>Panel - Carro ESP32</strong></div>
+      <div style="display:flex; gap:10px; align-items:center">
+        <div class="badge ok" id="wifiBadge"><span class="dot"></span> Conectado</div>
+        <div class="badge" id="batBadge">75%</div>
+      </div>
+    </header>
+
+    <!-- Izquierda -->
+    <div class="padCard">
+      <div class="sectionTitle">Control de Movimiento</div>
+      <p>Presiona una dirección</p>
+      <div class="pad">
+        <div></div>
+        <button class="btn" id="btnUp" aria-label="Up">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 14l6-6 6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div></div>
+
+        <button class="btn" id="btnLeft" aria-label="Left">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M14 6l-6 6 6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="btn center" id="btnStop" aria-label="Stop">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="4" stroke="#8b93a1" stroke-width="2"/>
+          </svg>
+        </button>
+        <button class="btn" id="btnRight" aria-label="Right">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M10 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div></div>
+        <button class="btn" id="btnDown" aria-label="Down">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M18 10l-6 6-6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div></div>
+      </div>
+      <div class="muted">Al soltar, el carro se detiene.</div>
+    </div>
+
+    <!-- Derecha -->
+    <div class="right">
+      <div class="sliderCard">
+        <div class="sectionTitle">Velocidad</div>
+        <div class="sliderRow">
+          <span>0%</span>
+          <input type="range" min="0" max="100" value="50" id="speedSlider" />
+          <span class="percent" id="speedLbl">50%</span>
+        </div>
+        <div class="muted">*Solo visual por ahora.</div>
+      </div>
+
+      <div class="stateCard">
+        <div class="sectionTitle">Estado del Sistema</div>
+        <div class="stateGroup">
+          <div class="stateItem">
+            <div class="name">
+              <div class="pill">⚙️</div>
+              <div>ESP32<br><span class="sub" id="espState">• Conectado</span></div>
+            </div>
+            <div class="muted" id="ipLbl">IP —</div>
+          </div>
+          <div class="stateItem">
+            <div class="name">
+              <div class="pill">🛞</div>
+              <div>Motores<br><span class="sub" id="motState">• Apagados</span></div>
+            </div>
+            <div class="muted" id="lastCmd">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sensorsCard">
+        <div class="sectionTitle">Sensores</div>
+        <div class="sensorsList" id="sensorsList">
+          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>MQ-7</div></div><div class="value">— ppm</div></div>
+          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>MQ-9</div></div><div class="value">— ppm</div></div>
+          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>MQ-135</div></div><div class="value">— ppm</div></div>
+          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>DHT22 Temp</div></div><div class="value">— °C</div></div>
+          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>DHT22 Hum</div></div><div class="value">— %</div></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>Proyecto Carrito ESP32 — Tu Nombre</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
