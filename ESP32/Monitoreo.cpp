@@ -1,5 +1,6 @@
 #include <WiFi.h>
 #include <WebServer.h>
+#include <FirebaseESP32.h>
 #include <DHT.h>
 #include <HTTPClient.h>
 
