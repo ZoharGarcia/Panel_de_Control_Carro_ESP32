@@ -7,12 +7,31 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wrap">
+  <!-- Overlay de Login (simple, sin Firebase) -->
+  <div id="authOverlay" class="authOverlay">
+    <div class="authCard">
+      <h2>Acceso</h2>
+      <p class="muted">Ingresa para usar el panel del Carro ESP32</p>
+      <form id="loginForm">
+        <label class="label" for="email">Usuario</label>
+        <input id="email" type="text" placeholder="Admin" required />
+        <label class="label" for="password">Contraseña</label>
+        <input id="password" type="password" placeholder="Admin2025" required />
+        <button type="submit" class="btn full">Entrar</button>
+        <div id="authMsg" class="authMsg"></div>
+      </form>
+      <div class="muted tiny">Demo local — credenciales visibles en `auth.js` (no usar en producción).</div>
+    </div>
+  </div>
+
+  <!-- APP: envuelto en #app para controlar visibilidad -->
+  <div id="app" class="wrap" style="display:none">
     <header>
       <div class="title"><strong>Panel - Carro ESP32</strong></div>
       <div style="display:flex; gap:10px; align-items:center">
         <div class="badge ok" id="wifiBadge"><span class="dot"></span> Conectado</div>
         <div class="badge" id="batBadge">75%</div>
+        <button id="logoutBtn" class="btn small ghost" title="Cerrar sesión">Salir</button>
       </div>
     </header>
 
@@ -91,18 +110,21 @@
       <div class="sensorsCard">
         <div class="sectionTitle">Sensores</div>
         <div class="sensorsList" id="sensorsList">
-          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>MQ-7</div></div><div class="value">— ppm</div></div>
-          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>MQ-9</div></div><div class="value">— ppm</div></div>
-          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>MQ-135</div></div><div class="value">— ppm</div></div>
-          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>DHT22 Temp</div></div><div class="value">— °C</div></div>
-          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>DHT22 Hum</div></div><div class="value">— %</div></div>
+          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>MQ-7</div></div><div class="value" id="mq7Val">— ppm</div></div>
+          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>MQ-9</div></div><div class="value" id="mq9Val">— ppm</div></div>
+          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>MQ-135</div></div><div class="value" id="mq135Val">— ppm</div></div>
+          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>DHT22 Temp</div></div><div class="value" id="tempVal">— °C</div></div>
+          <div class="sensorRow"><div class="name"><div class="pill">🟢</div><div>DHT22 Hum</div></div><div class="value" id="humVal">— %</div></div>
         </div>
+        <div class="muted tiny">Última actualización: <span id="updateTime">—</span></div>
       </div>
     </div>
 
     <footer>Proyecto Carrito ESP32 — Zohar Garcia</footer>
   </div>
 
+  <!-- JS -->
   <script src="script.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>
